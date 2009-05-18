@@ -1,14 +1,15 @@
-960 Grid System - Compass Plugin
+Elastic CSS Framework - Compass Plugin
 ================================
 
-* Port of Version 1.0
+* Port of Version 1.2.4
 * 2008-03-24
 
-Created by Nathan Smith. See the official site for more info: <http://960.gs/>
+Plugin created by Marnen Laibow-Koser, based on Elastic framework by Fernando Trasviña, Sergio de la Garza, et al.
+See http://elasticss.com and http://github.com/azendal/elastic/tree/master .
 
 ---------
 
-This plugin adds the 960 Grid System framework to [Compass](http://compass-style.org/).
+This plugin adds the Elastic CSS framework to [Compass](http://compass-style.org/).
 
 Install
 =======
@@ -19,7 +20,7 @@ Install
 Create a 960-based Compass Project
 ==================================
 
-    compass -r ninesixty -f 960 <project name>
+    compass -r elastic -f elastic <project name>
 
 Then edit your `grid.sass` and `text.sass` files accordingly. A reset is added into grid.sass automatically.
 
