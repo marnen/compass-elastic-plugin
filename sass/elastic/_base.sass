@@ -1,0 +1,16 @@
+@import yui/modules/reset.sass
+@import yui/modules/base.sass
+// We're only importing grids so we can use +em-size-hacked.
+// @import yui/modules/grids.sass
+
+
+=elastic-base
+  +reset
+  +yui-base
+  pre
+    :margin-bottom 1em
+  // setting a consistent width, 160px; control of type=file still not possible
+  input[type=text], input[type=password], textarea
+    // +em-size-hacked("width", 160px) // doesn't quite work
+    width: 12.25em
+    *width: 11.9em
