@@ -1,0 +1,40 @@
+
+=elastic-grid
+  +clearfix
+  
+// Equivalent to Elastic's .two-columns, .three-columns, and so on.
+// !column specifies the selector for columns within this mixin.
+=columns(!columns = 2, !column = ".column", !container = ".container")
+  !width = 99.99% / !columns
+  & > !column, & > !container > !column
+    +column-base(!width)
+  
+=column-base(!width = 100%)
+  :float left
+  :width= !width
+
+// Grade A browser clearfix
+.unit:after, .container:after,
+.column:after,
+.fixed-column:after,
+.elastic-column:after,
+.clearfix:after
+{
+	content    : " ";
+	display    : block;
+	height     : 0;
+	clear      : both;
+	visibility : hidden;
+}
+
+// msie6 clearfix
+.unit,
+.container,
+.column,
+.fixed-column,
+.elastic-column,
+.clearfix
+{
+	*zoom :1;
+	*display : inline-block;
+}
