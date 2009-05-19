@@ -1,40 +1,42 @@
+@import compass/utilities/general/clearfix.sass
 
 =elastic-grid
+  .unit, .container, .clearfix
+    +elastic-clearfix
+  .two-columns
+    +columns(2)
+  .column, .elastic-column, .fixed-column
+    +column-base
+  .three-columns
+    +columns(3)
+  .four-columns
+    +columns(4)
+    
+=elastic-clearfix
   +clearfix
+  // IE hack from Elastic that we may not need.
+  // &
+    :*zoom 1
+    :*display inline-block
   
 // Equivalent to Elastic's .two-columns, .three-columns, and so on.
 // !column specifies the selector for columns within this mixin.
-=columns(!columns = 2, !column = ".column", !container = ".container")
-  !width = 99.99% / !columns
-  & > !column, & > !container > !column
+// If !span_prefix is specified, span columns will be generated.
+=columns(!columns = 2, !column = ".column", !container = ".container", !span_prefix = ".span")
+  !width = 100% / !columns
+  & > #{!column}, & > #{!container} > #{!column}
     +column-base(!width)
-  
-=column-base(!width = 100%)
+  @if !columns > 2
+    @if !span_prefix
+      @for !i from 2 through (!columns - 1)
+        & > #{!span_prefix}-#{!i}, & > !container > #{!span_prefix}-#{!i}
+          +column-base(!width, !i)
+
+
+// !width: 1 column's width.
+// !span:  How many columns to span.
+=column-base(!width = "", !span = 1)
+  +elastic-clearfix
   :float left
-  :width= !width
-
-// Grade A browser clearfix
-.unit:after, .container:after,
-.column:after,
-.fixed-column:after,
-.elastic-column:after,
-.clearfix:after
-{
-	content    : " ";
-	display    : block;
-	height     : 0;
-	clear      : both;
-	visibility : hidden;
-}
-
-// msie6 clearfix
-.unit,
-.container,
-.column,
-.fixed-column,
-.elastic-column,
-.clearfix
-{
-	*zoom :1;
-	*display : inline-block;
-}
+  @if !width != ""
+    :width= !width * !span
